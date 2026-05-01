@@ -24,14 +24,10 @@ spark.sql(f"CREATE SCHEMA IF NOT EXISTS {CATALOG}.{SILVER_SCHEMA}")
 #--------------------------------------------
 
 # leemos las tablas bronze
-
-vuelos_slv.write.mode("overwrite").saveAsTable(f"{CATALOG}.{SILVER_SCHEMA}.vuelos")
-
-aeropuertos_slv.write.mode("overwrite").saveAsTable(f"{CATALOG}.{SILVER_SCHEMA}.aeropuertos")
-
-aeronaves_slv.write.mode("overwrite").saveAsTable(f"{CATALOG}.{SILVER_SCHEMA}.aeronaves")
-
-mantenimientos_slv.write.mode("overwrite").saveAsTable(f"{CATALOG}.{SILVER_SCHEMA}.mantenimientos")
+vuelos_bz = spark.table(f"{CATALOG}.{BRONZE_SCHEMA}.vuelos")
+aeronaves_bz = spark.table(f"{CATALOG}.{BRONZE_SCHEMA}.aeronaves")
+aeropuertos_bz = spark.table(f"{CATALOG}.{BRONZE_SCHEMA}.aeropuertos")
+mantenimientos_bz = spark.table(f"{CATALOG}.{BRONZE_SCHEMA}.mantenimientos")
 
 #-------------------------------------------
 # 2. Silver Vuelos
@@ -140,4 +136,17 @@ mantenimientos_slv.write.format("delta")\
 
 print("Silver Delta completada")
 print(f"Tablas creadas: {CATALOG}.{SILVER_SCHEMA}.vuelos, aeronaves, aeropuertos, mantenimientos")
+
+
+
+
+
+
+
+
+
+
+
+
+
 

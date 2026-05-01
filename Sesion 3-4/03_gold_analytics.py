@@ -110,3 +110,4 @@ df_kpi_mantenimiento.write.format("delta")\
     .option("overwriteSchema", True)\
     .saveAsTable(f"{CATALOG}.{GOLD_SCHEMA}.kpi_costo_mantenimiento")
 
+
